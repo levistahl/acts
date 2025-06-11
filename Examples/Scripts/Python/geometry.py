@@ -26,9 +26,9 @@ def runGeometry(
     outputDir,
     events=1,
     outputObj=True,
-    outputCsv=True,
+    outputCsv=False,
     outputJson=True,
-    outputRoot=True,
+    outputRoot=False,
 ):
 
     for ievt in range(events):
@@ -92,4 +92,4 @@ if "__main__" == __name__:
     # detector, trackingGeometry, decorators = GenericDetector.create()
     # detector, trackingGeometry, decorators = getOpenDataDetector(getOpenDataDetectorDirectory())
 
-    runGeometry(trackingGeometry, decorators, outputDir=os.getcwd())
+    runGeometry(trackingGeometry, decorators, outputDir=os.getcwd(),)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import os
-
+import pathlib
 from acts.examples import (
     Sequencer,
     WhiteBoard,
@@ -26,7 +26,7 @@ from acts import (
 )
 from common import getOpenDataDetectorDirectory
 from acts.examples.odd import getOpenDataDetector
-
+import alice3
 
 def runMaterialMapping(
     trackingGeometry,
@@ -134,9 +134,9 @@ def runMaterialMapping(
 
 if "__main__" == __name__:
     matDeco = acts.IMaterialDecorator.fromFile("geometry-map.json")
-    detector, trackingGeometry, decorators = getOpenDataDetector(
-        getOpenDataDetectorDirectory(), matDeco
-    )
+    geo_dir = pathlib.Path.cwd()
+    detector, trackingGeometry, decorators = alice3.buildALICE3Geometry(
+    geo_dir, True, False, acts.logging.VERBOSE)
 
     runMaterialMapping(
         trackingGeometry,

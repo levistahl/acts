@@ -3,13 +3,13 @@ import os
 
 from acts.examples import Sequencer, RootMaterialTrackWriter
 
-import acts
+import acts, pathlib
 from acts import (
     UnitConstants as u,
 )
 from common import getOpenDataDetectorDirectory
 from acts.examples.odd import getOpenDataDetector
-
+import alice3
 
 def runMaterialValidation(
     trackingGeometry,
@@ -61,11 +61,9 @@ def runMaterialValidation(
 
 
 if "__main__" == __name__:
-    matDeco = acts.IMaterialDecorator.fromFile("material-map.json")
-
-    detector, trackingGeometry, decorators = getOpenDataDetector(
-        getOpenDataDetectorDirectory(), mdecorator=matDeco
-    )
+    geo_dir = pathlib.Path.cwd()
+    detector, trackingGeometry, decorators = alice3.buildALICE3Geometry(
+    geo_dir, True, False, acts.logging.VERBOSE)
 
     field = acts.ConstantBField(acts.Vector3(0, 0, 2 * acts.UnitConstants.T))
 

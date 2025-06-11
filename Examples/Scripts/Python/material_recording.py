@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os
 import warnings
-from pathlib import Path
+import pathlib
 
 import acts
 from acts.examples import (
@@ -12,12 +12,9 @@ from acts.examples import (
     RandomNumbers,
 )
 
-import acts.examples.dd4hep
-import acts.examples.geant4
-import acts.examples.geant4.dd4hep
-from common import getOpenDataDetectorDirectory
-from acts.examples.odd import getOpenDataDetector
 
+import acts.examples.geant4
+import alice3
 u = acts.UnitConstants
 
 _material_recording_executed = False
@@ -31,7 +28,7 @@ def runMaterialRecording(g4geo, outputDir, tracksPerEvent=10000, s=None):
 
     rnd = RandomNumbers(seed=228)
 
-    s = s or acts.examples.Sequencer(events=1000, numThreads=1)
+    s = s or acts.examples.Sequencer(events=10000, numThreads=1)
 
     evGen = EventGenerator(
         level=acts.logging.INFO,
@@ -91,10 +88,11 @@ def runMaterialRecording(g4geo, outputDir, tracksPerEvent=10000, s=None):
 
 if "__main__" == __name__:
 
-    detector, trackingGeometry, decorators = getOpenDataDetector(
-        getOpenDataDetectorDirectory()
-    )
+    geo_dir = pathlib.Path.cwd()
+    detector, trackingGeometry, decorators = alice3.buildALICE3Geometry(
+    geo_dir, True, False, acts.logging.VERBOSE)
 
-    g4geo = acts.examples.geant4.dd4hep.DDG4DetectorConstruction(detector)
+    gdml_file = "output.gdml"
+    g4geo = acts.examples.geant4.GdmlDetectorConstruction(gdml_file)
 
     runMaterialRecording(g4geo=g4geo, tracksPerEvent=100, outputDir=os.getcwd()).run()
