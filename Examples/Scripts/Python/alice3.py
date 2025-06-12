@@ -93,7 +93,7 @@ def runALICE3(
             )
 
             jmw.write(trackingGeometry)
-
+#teste
 
 def buildALICE3Geometry(
     geo_dir: Path,
