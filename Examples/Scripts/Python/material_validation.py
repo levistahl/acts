@@ -11,7 +11,6 @@ from common import getOpenDataDetectorDirectory
 from acts.examples.odd import getOpenDataDetector
 import alice3
 
-
 def runMaterialValidation(
     trackingGeometry,
     decorators,
@@ -64,8 +63,7 @@ def runMaterialValidation(
 if "__main__" == __name__:
     geo_dir = pathlib.Path.cwd()
     detector, trackingGeometry, decorators = alice3.buildALICE3Geometry(
-        geo_dir, True, False, acts.logging.VERBOSE
-    )
+    geo_dir, True, False, acts.logging.VERBOSE)
 
     field = acts.ConstantBField(acts.Vector3(0, 0, 2 * acts.UnitConstants.T))
 

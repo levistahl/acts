@@ -32,7 +32,8 @@ def runALICE3(
 ):
 
     for ievt in range(events):
-        eventStore = WhiteBoard(name=f"EventStore#{ievt}", level=acts.logging.INFO)
+        eventStore = WhiteBoard(
+            name=f"EventStore#{ievt}", level=acts.logging.INFO)
         ialg = 0
 
         context = AlgorithmContext(ialg, ievt, eventStore)
@@ -92,10 +93,7 @@ def runALICE3(
             )
 
             jmw.write(trackingGeometry)
-
-
-# teste
-
+#teste
 
 def buildALICE3Geometry(
     geo_dir: Path,
@@ -112,7 +110,8 @@ def buildALICE3Geometry(
         logger.info("Adding material from %s", file.absolute())
         matDeco = acts.IMaterialDecorator.fromFile(
             file,
-            level=acts.logging.Level(min(acts.logging.INFO.value, logLevel.value)),
+            level=acts.logging.Level(
+                min(acts.logging.INFO.value, logLevel.value)),
         )
 
     tgeo_fileName = geo_dir / "geom/new_geometry.root"
@@ -155,13 +154,9 @@ def buildALICE3Geometry(
                 binTolerancePhi=(0.025 * u.mm, 0.025 * u.mm),
                 layers=LayerTriplet(True),
                 subVolumeName=LayerTriplet(
-                    negative="FT3*", central="TRK*", positive="FT3*"
-                ),
+                    negative="FT3*", central="TRK*", positive="FT3*"),
                 sensitiveNames=LayerTriplet(
-                    negative=["FT3Sensor*"],
-                    central=["TRKSensor*"],
-                    positive=["FT3Sensor*"],
-                ),
+                    negative=["FT3Sensor*"], central=["TRKSensor*"], positive=["FT3Sensor*"]),
                 sensitiveAxes=LayerTriplet("XYZ"),
                 rRange=LayerTriplet((3.9 * u.mm, 45 * u.mm)),
                 zRange=LayerTriplet(
@@ -169,10 +164,10 @@ def buildALICE3Geometry(
                     central=(-250 * u.mm, 250 * u.mm),
                     positive=(250 * u.mm, 400 * u.mm),
                 ),
-                splitTolR=LayerTriplet(negative=-1.0, central=3 * u.mm, positive=-1.0),
+                splitTolR=LayerTriplet(
+                    negative=-1.0, central=3 * u.mm, positive=-1.0),
                 splitTolZ=LayerTriplet(
-                    negative=10 * u.mm, central=-1.0, positive=10 * u.mm
-                ),
+                    negative=10 * u.mm, central=-1.0, positive=10 * u.mm),
                 binning0=LayerTriplet(
                     negative=[(0, equidistant)],
                     central=[(0, equidistant)],
@@ -197,7 +192,8 @@ def buildALICE3Geometry(
                 binToleranceR=(5 * u.mm, 5 * u.mm),
                 binToleranceZ=(5 * u.mm, 5 * u.mm),
                 binTolerancePhi=(0.025 * u.mm, 0.025 * u.mm),
-                layers=LayerTriplet(positive=False, central=True, negative=False),
+                layers=LayerTriplet(
+                    positive=False, central=True, negative=False),
                 subVolumeName=LayerTriplet("TRK*"),
                 sensitiveNames=LayerTriplet(["TRKSensor*"]),
                 sensitiveAxes=LayerTriplet("XYZ"),
@@ -235,7 +231,8 @@ def buildALICE3Geometry(
                 binToleranceR=(10 * u.mm, 10 * u.mm),
                 binToleranceZ=(10 * u.mm, 10 * u.mm),
                 binTolerancePhi=(0.025 * u.mm, 0.025 * u.mm),
-                layers=LayerTriplet(positive=False, central=True, negative=False),
+                layers=LayerTriplet(
+                    positive=False, central=True, negative=False),
                 subVolumeName=LayerTriplet("IOTOF*"),
                 sensitiveNames=LayerTriplet(["ITOFSensor*"]),
                 sensitiveAxes=LayerTriplet("XYZ"),
@@ -266,14 +263,15 @@ def buildALICE3Geometry(
                 discNPhiSegments=0,
                 itkModuleSplit=False,
                 barrelMap={},
-                discMap={},
+                discMap={}, 
             ),
             Volume(
                 name="OuterPixelsContinuation",
                 binToleranceR=(5 * u.mm, 5 * u.mm),
                 binToleranceZ=(5 * u.mm, 5 * u.mm),
                 binTolerancePhi=(0.025 * u.mm, 0.025 * u.mm),
-                layers=LayerTriplet(positive=False, central=True, negative=False),
+                layers=LayerTriplet(
+                    positive=False, central=True, negative=False),
                 subVolumeName=LayerTriplet("TRK*"),
                 sensitiveNames=LayerTriplet(["TRKSensor*"]),
                 sensitiveAxes=LayerTriplet("XYZ"),
@@ -311,13 +309,13 @@ def buildALICE3Geometry(
                 binToleranceR=(5 * u.mm, 5 * u.mm),
                 binToleranceZ=(5 * u.mm, 5 * u.mm),
                 binTolerancePhi=(0.025 * u.mm, 0.025 * u.mm),
-                layers=LayerTriplet(positive=True, central=False, negative=True),
+                layers=LayerTriplet(
+                    positive=True, central=False, negative=True),
                 subVolumeName=LayerTriplet("FT3*"),
                 sensitiveNames=LayerTriplet(["FT3Sensor*"]),
                 sensitiveAxes=LayerTriplet("XYZ"),
-                rRange=LayerTriplet(
-                    negative=(50 * u.mm, 700 * u.mm), positive=(50 * u.mm, 700 * u.mm)
-                ),
+                rRange=LayerTriplet(negative=(50 * u.mm, 700 * u.mm),
+                                    positive=(50 * u.mm, 700 * u.mm)),
                 zRange=LayerTriplet(
                     negative=(-1300 * u.mm, -700 * u.mm),
                     positive=(700 * u.mm, 1300 * u.mm),
@@ -348,7 +346,8 @@ def buildALICE3Geometry(
                 binToleranceR=(5 * u.mm, 5 * u.mm),
                 binToleranceZ=(5 * u.mm, 5 * u.mm),
                 binTolerancePhi=(0.025 * u.mm, 0.025 * u.mm),
-                layers=LayerTriplet(positive=False, central=True, negative=False),
+                layers=LayerTriplet(
+                    positive=False, central=True, negative=False),
                 subVolumeName=LayerTriplet("TRK*"),
                 sensitiveNames=LayerTriplet(["TRKSensor*"]),
                 sensitiveAxes=LayerTriplet("XYZ"),
@@ -386,7 +385,8 @@ def buildALICE3Geometry(
                 binToleranceR=(5 * u.mm, 5 * u.mm),
                 binToleranceZ=(5 * u.mm, 5 * u.mm),
                 binTolerancePhi=(0.025 * u.mm, 0.025 * u.mm),
-                layers=LayerTriplet(positive=True, central=False, negative=True),
+                layers=LayerTriplet(
+                    positive=True, central=False, negative=True),
                 subVolumeName=LayerTriplet("FT3*"),
                 sensitiveNames=LayerTriplet(["FT3Sensor*"]),
                 sensitiveAxes=LayerTriplet("XYZ"),
@@ -426,25 +426,20 @@ def buildALICE3Geometry(
                 binTolerancePhi=(0.025 * u.mm, 0.025 * u.mm),
                 layers=LayerTriplet(True),
                 subVolumeName=LayerTriplet(
-                    negative="IOTOF*", central="IOTOF*", positive="IOTOF*"
-                ),
+                    negative="IOTOF*", central="IOTOF*", positive="IOTOF*"),
                 sensitiveNames=LayerTriplet(
-                    negative=["BTOFSensor*"],
-                    central=["OTOFSensor*"],
-                    positive=["FTOFSensor*"],
-                ),
+                    negative=["BTOFSensor*"], central=["OTOFSensor*"], positive=["FTOFSensor*"]),
                 sensitiveAxes=LayerTriplet("XYZ"),
-                rRange=LayerTriplet(
-                    negative=(140 * u.mm, 1500 * u.mm),
-                    central=(820 * u.mm, 1500 * u.mm),
-                    positive=(140 * u.mm, 1500 * u.mm),
-                ),
+                rRange=LayerTriplet(negative=(140 * u.mm, 1500 * u.mm),
+                                    central=(820 * u.mm, 1500 * u.mm),
+                                    positive=(140 * u.mm, 1500 * u.mm)),
                 zRange=LayerTriplet(
                     negative=(-4200 * u.mm, -3600 * u.mm),
                     central=(-3420 * u.mm, 3420 * u.mm),
                     positive=(3600 * u.mm, 4200 * u.mm),
                 ),
-                splitTolR=LayerTriplet(negative=-1.0, central=5 * u.mm, positive=-1.0),
+                splitTolR=LayerTriplet(
+                    negative=-1.0, central=5 * u.mm, positive=-1.0),
                 splitTolZ=LayerTriplet(
                     negative=5 * u.mm, central=-1.0, positive=5 * u.mm
                 ),

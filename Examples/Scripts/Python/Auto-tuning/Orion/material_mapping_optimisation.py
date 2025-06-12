@@ -81,11 +81,9 @@ def runMaterialMappingNoTrack(
             fileList=[
                 os.path.join(
                     inputDir,
-                    (
-                        "optimised-material-map_tracks.root"
-                        if readCachedSurfaceInformation
-                        else "geant4_material_tracks.root"
-                    ),
+                    "optimised-material-map_tracks.root"
+                    if readCachedSurfaceInformation
+                    else "geant4_material_tracks.root",
                 )
             ],
             readCachedSurfaceInformation=readCachedSurfaceInformation,
@@ -245,11 +243,9 @@ def runMaterialMappingVariance(
         fileList=[
             os.path.join(
                 inputPath,
-                (
-                    "optimised-material-map_tracks.root"
-                    if readCachedSurfaceInformation
-                    else "geant4_material_tracks.root"
-                ),
+                "optimised-material-map_tracks.root"
+                if readCachedSurfaceInformation
+                else "geant4_material_tracks.root",
             )
         ],
         readCachedSurfaceInformation=readCachedSurfaceInformation,

@@ -28,7 +28,6 @@ from common import getOpenDataDetectorDirectory
 from acts.examples.odd import getOpenDataDetector
 import alice3
 
-
 def runMaterialMapping(
     trackingGeometry,
     decorators,
@@ -61,11 +60,9 @@ def runMaterialMapping(
             fileList=[
                 os.path.join(
                     inputDir,
-                    (
-                        mapName + "_tracks.root"
-                        if readCachedSurfaceInformation
-                        else "geant4_material_tracks.root"
-                    ),
+                    mapName + "_tracks.root"
+                    if readCachedSurfaceInformation
+                    else "geant4_material_tracks.root",
                 )
             ],
             readCachedSurfaceInformation=readCachedSurfaceInformation,
@@ -139,8 +136,7 @@ if "__main__" == __name__:
     matDeco = acts.IMaterialDecorator.fromFile("geometry-map.json")
     geo_dir = pathlib.Path.cwd()
     detector, trackingGeometry, decorators = alice3.buildALICE3Geometry(
-        geo_dir, True, False, acts.logging.VERBOSE
-    )
+    geo_dir, True, False, acts.logging.VERBOSE)
 
     runMaterialMapping(
         trackingGeometry,

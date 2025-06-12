@@ -537,12 +537,10 @@ def addStandardSeeding(
     )
     seedFinderOptions = acts.SeedFinderOptions(
         **acts.examples.defaultKWArgs(
-            beamPos=(
-                acts.Vector2(0.0, 0.0)
-                if seedFinderOptionsArg.beamPos == (None, None)
-                else acts.Vector2(
-                    seedFinderOptionsArg.beamPos[0], seedFinderOptionsArg.beamPos[1]
-                )
+            beamPos=acts.Vector2(0.0, 0.0)
+            if seedFinderOptionsArg.beamPos == (None, None)
+            else acts.Vector2(
+                seedFinderOptionsArg.beamPos[0], seedFinderOptionsArg.beamPos[1]
             ),
             bFieldInZ=seedFinderOptionsArg.bFieldInZ,
         )
@@ -680,12 +678,10 @@ def addOrthogonalSeeding(
     )
     seedFinderOptions = acts.SeedFinderOptions(
         **acts.examples.defaultKWArgs(
-            beamPos=(
-                acts.Vector2(0.0, 0.0)
-                if seedFinderOptionsArg.beamPos == (None, None)
-                else acts.Vector2(
-                    seedFinderOptionsArg.beamPos[0], seedFinderOptionsArg.beamPos[1]
-                )
+            beamPos=acts.Vector2(0.0, 0.0)
+            if seedFinderOptionsArg.beamPos == (None, None)
+            else acts.Vector2(
+                seedFinderOptionsArg.beamPos[0], seedFinderOptionsArg.beamPos[1]
             ),
             bFieldInZ=seedFinderOptionsArg.bFieldInZ,
         )
@@ -1329,6 +1325,7 @@ def addVertexFitting(
     trackSelectorRanges: Optional[TrackSelectorRanges] = None,
     logLevel: Optional[acts.logging.Level] = None,
 ) -> None:
+
     """This function steers the vertex fitting
 
     Parameters

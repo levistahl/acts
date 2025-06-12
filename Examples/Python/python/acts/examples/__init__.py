@@ -128,8 +128,7 @@ _patchKwargsConstructor(TGeoDetector.Config.Volume, proc=_process_volume_interva
 
 def NamedTypeArgs(**namedTypeArgs):
     """Decorator to move args of a named type (eg. `namedtuple` or `Enum`) to kwargs based on type, so user doesn't need to specify the key name.
-    Also allows the keyword argument to be converted from a built-in type (eg. `tuple` or `int`).
-    """
+    Also allows the keyword argument to be converted from a built-in type (eg. `tuple` or `int`)."""
 
     namedTypeClasses = {c: a for a, c in namedTypeArgs.items()}
 
@@ -239,11 +238,11 @@ def dump_args_calls(myLocal=None, mods=None, quiet=False):
         found.add(mod)
         for name, obj in sorted(
             vars(mod).items(),
-            key=lambda m: (
-                (2, m[0])
-                if m[0] == "ActsPythonBindings"
-                else (1, m[0]) if m[0].startswith("_") else (0, m[0])
-            ),
+            key=lambda m: (2, m[0])
+            if m[0] == "ActsPythonBindings"
+            else (1, m[0])
+            if m[0].startswith("_")
+            else (0, m[0]),
         ):
             if (
                 not name.startswith("__")
@@ -295,7 +294,8 @@ class CustomLogLevel(Protocol):
         self,
         minLevel: acts.logging.Level = acts.logging.VERBOSE,
         maxLevel: acts.logging.Level = acts.logging.FATAL,
-    ) -> acts.logging.Level: ...
+    ) -> acts.logging.Level:
+        ...
 
 
 def defaultLogging(
