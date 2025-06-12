@@ -100,7 +100,7 @@ jobs:
       - name: Install
         run: ${SETUP} && cmake --build build --target install
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v3
         with:
           name: acts-${{ matrix.image }}
           path: ${{ env.INSTALL_DIR }}
@@ -186,7 +186,7 @@ jobs:
       - name: Package build
         run: tar czf build.tar.gz -C build . 
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v3
         with:
           name: acts-linux-ubuntu
           path: build.tar.gz
@@ -290,7 +290,7 @@ jobs:
           && export PYTHONPATH="${PYTHONPATH}":"${GITHUB_WORKSPACE}/Examples/Scripts/Python"
           && CI/physmon/phys_perf_mon.sh physmon
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v3
         if: always()
         with:
           name: physmon
@@ -540,7 +540,7 @@ jobs:
         run: cmake --build build --target integrationtests
       - name: Install
         run: cmake --build build --target install
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v3
         with:
           name: acts-macos
           path: ${{ env.INSTALL_DIR }}
