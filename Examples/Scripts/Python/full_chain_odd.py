@@ -131,13 +131,15 @@ with acts.FpeMonitor() if not g4_simulation else contextlib.nullcontext():
             s,
             trackingGeometry,
             field,
-            preSelectParticles=ParticleSelectorConfig(
-                eta=(-3.0, 3.0),
-                pt=(150 * u.MeV, None),
-                removeNeutral=True,
-            )
-            if ttbar_pu200
-            else ParticleSelectorConfig(),
+            preSelectParticles=(
+                ParticleSelectorConfig(
+                    eta=(-3.0, 3.0),
+                    pt=(150 * u.MeV, None),
+                    removeNeutral=True,
+                )
+                if ttbar_pu200
+                else ParticleSelectorConfig()
+            ),
             outputDirRoot=outputDir,
             # outputDirCsv=outputDir,
             rnd=rnd,
@@ -157,9 +159,11 @@ with acts.FpeMonitor() if not g4_simulation else contextlib.nullcontext():
         s,
         trackingGeometry,
         field,
-        TruthSeedRanges(pt=(1.0 * u.GeV, None), eta=(-3.0, 3.0), nHits=(9, None))
-        if ttbar_pu200
-        else TruthSeedRanges(),
+        (
+            TruthSeedRanges(pt=(1.0 * u.GeV, None), eta=(-3.0, 3.0), nHits=(9, None))
+            if ttbar_pu200
+            else TruthSeedRanges()
+        ),
         geoSelectionConfigFile=oddSeedingSel,
         outputDirRoot=outputDir,
     )

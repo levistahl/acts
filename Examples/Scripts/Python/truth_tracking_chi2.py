@@ -44,7 +44,7 @@ def addChi2Tracks(
         trackingGeometry=trackingGeometry,
         fit=acts.examples.TrackFittingChi2Algorithm.makeTrackFitterChi2Function(
             trackingGeometry,
-            field
+            field,
             # , **chi2Options  # TODO: implement
         )
     )

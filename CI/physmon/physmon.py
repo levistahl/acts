@@ -183,13 +183,19 @@ def run_ckf_tracking(truthSmearedSeeded, truthEstimatedSeeded, label):
             ),
             SeedFinderOptionsArg(bFieldInZ=1.99724 * u.T, beamPos=(0.0, 0.0)),
             TruthEstimatedSeedingAlgorithmConfigArg(deltaR=(10.0 * u.mm, None)),
-            seedingAlgorithm=SeedingAlgorithm.TruthSmeared
-            if truthSmearedSeeded
-            else SeedingAlgorithm.TruthEstimated
-            if truthEstimatedSeeded
-            else SeedingAlgorithm.Default
-            if label == "seeded"
-            else SeedingAlgorithm.Orthogonal,
+            seedingAlgorithm=(
+                SeedingAlgorithm.TruthSmeared
+                if truthSmearedSeeded
+                else (
+                    SeedingAlgorithm.TruthEstimated
+                    if truthEstimatedSeeded
+                    else (
+                        SeedingAlgorithm.Default
+                        if label == "seeded"
+                        else SeedingAlgorithm.Orthogonal
+                    )
+                )
+            ),
             geoSelectionConfigFile=geoSel,
             rnd=rnd,  # only used by SeedingAlgorithm.TruthSmeared
             outputDirRoot=tp,
@@ -218,9 +224,9 @@ def run_ckf_tracking(truthSmearedSeeded, truthEstimatedSeeded, label):
         addVertexFitting(
             s,
             field,
-            associatedParticles=None
-            if label in ["seeded", "orthogonal"]
-            else "particles_input",
+            associatedParticles=(
+                None if label in ["seeded", "orthogonal"] else "particles_input"
+            ),
             vertexFinder=VertexFinder.Iterative,
             outputDirRoot=tp,
         )
@@ -231,9 +237,7 @@ def run_ckf_tracking(truthSmearedSeeded, truthEstimatedSeeded, label):
         for stem in ["performance_ckf", "performance_vertexing"] + (
             ["performance_seeding", "performance_ambi"]
             if label in ["seeded", "orthogonal"]
-            else ["performance_seeding"]
-            if label == "truth_estimated"
-            else []
+            else ["performance_seeding"] if label == "truth_estimated" else []
         ):
             perf_file = tp / f"{stem}.root"
             assert perf_file.exists(), "Performance file not found"

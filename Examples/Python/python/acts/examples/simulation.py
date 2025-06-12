@@ -597,7 +597,11 @@ def addGeant4(
         the output folder for the Root output, None triggers no output
     """
 
-    from acts.examples.geant4 import Geant4Simulation, makeGeant4SimulationConfig, GdmlDetectorConstruction
+    from acts.examples.geant4 import (
+        Geant4Simulation,
+        makeGeant4SimulationConfig,
+        GdmlDetectorConstruction,
+    )
 
     customLogLevel = acts.examples.defaultLogging(s, logLevel)
 

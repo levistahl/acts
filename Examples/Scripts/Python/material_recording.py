@@ -15,6 +15,7 @@ from acts.examples import (
 
 import acts.examples.geant4
 import alice3
+
 u = acts.UnitConstants
 
 _material_recording_executed = False
@@ -90,7 +91,8 @@ if "__main__" == __name__:
 
     geo_dir = pathlib.Path.cwd()
     detector, trackingGeometry, decorators = alice3.buildALICE3Geometry(
-    geo_dir, True, False, acts.logging.VERBOSE)
+        geo_dir, True, False, acts.logging.VERBOSE
+    )
 
     gdml_file = "output.gdml"
     g4geo = acts.examples.geant4.GdmlDetectorConstruction(gdml_file)
