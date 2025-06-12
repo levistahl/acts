@@ -19,7 +19,7 @@ jobs:
     env:
         DOXYGEN_WARN_AS_ERROR: FAIL_ON_WARNINGS
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install dependencies
         run: >
           curl -SL https://sourceforge.net/projects/doxygen/files/rel-1.9.4/doxygen-1.9.4.linux.bin.tar.gz/download | tar -xzC .
@@ -30,7 +30,7 @@ jobs:
         run: cmake -B build -S . -GNinja -DACTS_BUILD_DOCS=ON
       - name: Build
         run: cmake --build build --target docs-with-api
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: acts-docs
           path: docs/_build/html/
